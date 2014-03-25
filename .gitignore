@@ -1,0 +1,4 @@
+*.xcodeproj/*.xcworkspace
+*.xcodeproj/xcuserdata
+
+.bundle
