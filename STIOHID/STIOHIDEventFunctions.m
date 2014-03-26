@@ -6,6 +6,8 @@
 
 
 STIOHIDEventCreateData_t STIOHIDEventCreateData = NULL;
+STIOHIDEventCreateWithBytes_t STIOHIDEventCreateWithBytes = NULL;
+
 STIOHIDEventCreateDigitizerFingerEventWithQuality_t STIOHIDEventCreateDigitizerFingerEventWithQuality = NULL;
 STIOHIDEventCreateDigitizerEvent_t STIOHIDEventCreateDigitizerEvent = NULL;
 STIOHIDEventAppendEvent_t STIOHIDEventAppendEvent = NULL;
@@ -21,6 +23,7 @@ STIOHIDEventSetFloatValue_t STIOHIDEventSetFloatValue = NULL;
 __attribute__((constructor))
 void STIOHIDEventInit(void) {
     STIOHIDEventCreateData = dlsym(RTLD_DEFAULT, "IOHIDEventCreateData");
+    STIOHIDEventCreateWithBytes = dlsym(RTLD_DEFAULT, "IOHIDEventCreateWithBytes");
     STIOHIDEventCreateDigitizerEvent = dlsym(RTLD_DEFAULT, "IOHIDEventCreateDigitizerEvent");
     STIOHIDEventCreateDigitizerFingerEventWithQuality = dlsym(RTLD_DEFAULT, "IOHIDEventCreateDigitizerFingerEventWithQuality");
     STIOHIDEventAppendEvent = dlsym(RTLD_DEFAULT, "IOHIDEventAppendEvent");

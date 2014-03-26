@@ -21,6 +21,7 @@ struct __attribute__((packed)) STIOFixed {
     uint32_t hi : 16;
 };
 
+// 0x63 -> phase?
 
 typedef CFTypeRef STIOHIDEventRef;
 typedef uint32_t STIOHIDEventType;
@@ -142,11 +143,11 @@ struct __attribute__((packed)) STIOHIDEventData {
     union {
         struct {
             enum STIOHIDEventOption genericOptions : 16;
-            uint32_t eventOptions : 16;
+            uint32_t eventOptions : 16; // eventFlags?
         };
         uint32_t options;
     } options;
-    uint32_t depth;
+    uint32_t depth;//phase?
 };
 #if __has_feature(c_static_assert)
 _Static_assert(sizeof(struct STIOHIDEventData) == 16, "");
@@ -200,16 +201,14 @@ _Static_assert(sizeof(struct STIOHIDDigitizerQualityEventData) == 88, "");
 #endif
 
 struct __attribute__((packed)) STIOHIDSystemQueueEventData {
-    uint64_t timeStamp;
+    uint64_t timestamp;
     uint64_t senderID;
     uint32_t options;
     uint32_t attributeLength;
     uint32_t eventCount;
-    uint8_t attributeData[28];
-    struct STIOHIDEventData events[];
 };
 #if __has_feature(c_static_assert)
-_Static_assert(sizeof(struct STIOHIDSystemQueueEventData) == 56, "");
+_Static_assert(sizeof(struct STIOHIDSystemQueueEventData) == 28, "");
 #endif
 
 

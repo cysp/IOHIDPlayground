@@ -3,7 +3,6 @@
 #ifndef STIOHIDEVENTFUNCTIONS_H
 #define STIOHIDEVENTFUNCTIONS_H
 
-typedef CFDataRef (*STIOHIDEventCreateData_t)(CFAllocatorRef allocator, STIOHIDEventRef event);
 
 typedef STIOHIDEventRef (*STIOHIDEventCreateDigitizerFingerEventWithQuality_t)(CFAllocatorRef allocator, uint64_t timeStamp, uint32_t index, uint32_t identity, uint32_t eventMask, STIOHIDFloat x, STIOHIDFloat y, STIOHIDFloat z, /*STIOHIDFloat tipPressure,*/ STIOHIDFloat twist, Boolean range, Boolean touch, STIOOptionBits options);
 
@@ -25,7 +24,11 @@ typedef void (*STIOHIDEventSystemClientDispatchEvent_t)(STIOHIDEventSystemClient
 //void IOHIDEventSystemConnectionDispatchEvent(IOHIDEventSystemConnectionRef connection, IOHIDEventRef event);
 
 
+typedef CFDataRef (*STIOHIDEventCreateData_t)(CFAllocatorRef allocator, STIOHIDEventRef event);
 extern STIOHIDEventCreateData_t STIOHIDEventCreateData;
+typedef STIOHIDEventRef (*STIOHIDEventCreateWithBytes_t)(CFAllocatorRef allocator, void *bytes, size_t length);
+extern STIOHIDEventCreateWithBytes_t STIOHIDEventCreateWithBytes;
+
 extern STIOHIDEventCreateDigitizerFingerEventWithQuality_t STIOHIDEventCreateDigitizerFingerEventWithQuality;
 extern STIOHIDEventCreateDigitizerEvent_t STIOHIDEventCreateDigitizerEvent;
 extern STIOHIDEventAppendEvent_t STIOHIDEventAppendEvent;
