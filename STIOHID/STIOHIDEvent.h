@@ -2,23 +2,18 @@
 
 #import <Foundation/Foundation.h>
 
-#import "STCFRuntime.h"
-#import "STIOHIDEventType.h"
-#import "STIOHIDEventField.h"
+#import <STIOHID/STCFRuntime.h>
+#import <STIOHID/STIOHIDTypes.h>
+#import <STIOHID/STIOHIDEventType.h>
+#import <STIOHID/STIOHIDEventField.h>
 
 
-typedef uint32_t STIOOptionBits;
 enum STIOHIDEventOption {
     STIOHIDEventOptionIsAbsolute     = 1 << 0,
     STIOHIDEventOptionIsCollection   = 1 << 1,
     STIOHIDEventOptionIsPixelUnits   = 1 << 2,
     STIOHIDEventOptionIsCenterOrigin = 1 << 3,
     STIOHIDEventOptionIsBuiltIn      = 1 << 4,
-};
-
-struct __attribute__((packed)) STIOFixed {
-    uint32_t lo : 16;
-    uint32_t hi : 16;
 };
 
 // 0x63 -> phase?
@@ -29,7 +24,7 @@ struct __attribute__((packed)) STIOHIDEventBase {
     struct STCFRuntimeBase base;	// 0, 4
     uint64_t timeStamp;	// 8, c
     uint64_t senderId;
-    STIOOptionBits options;	// 18
+    enum STIOHIDEventOption options : 32;	// 18
     uint32_t typeMask;	// 1c
     uint32_t attributeDataLength;
     uintptr_t attributeDataBytes;
@@ -140,80 +135,6 @@ struct __attribute__((packed)) STIOHIDDigitizerQualityEvent {
     } orientation;
 };
 
-
-struct __attribute__((packed)) STIOHIDEventData {
-    uint32_t length;
-    enum STIOHIDEventType type : 32;
-    union {
-        struct {
-            enum STIOHIDEventOption genericOptions : 16;
-            uint32_t eventOptions : 16; // eventFlags?
-        };
-        uint32_t options;
-    } options;
-    uint32_t depth;//phase?
-};
-#if __has_feature(c_static_assert)
-_Static_assert(sizeof(struct STIOHIDEventData) == 16, "");
-#endif
-
-struct __attribute__((packed)) STIOHIDAxisEventData {
-    struct STIOHIDEventData base;
-    struct {
-        struct STIOFixed x;
-        struct STIOFixed y;
-        struct STIOFixed z;
-    } position;
-};
-#if __has_feature(c_static_assert)
-_Static_assert(sizeof(struct STIOHIDAxisEventData) == 28, "");
-#endif
-
-struct __attribute__((packed)) STIOHIDDigitizerEventData {
-    struct STIOHIDAxisEventData base;
-    uint32_t transducerIndex;
-    enum STIOHIDDigitizerTransducerType transducerType : 32;
-    uint32_t identity;
-    enum STIOHIDDigitizerEventType eventMask : 32;
-    enum STIOHIDDigitizerEventType childEventMask : 32;
-    uint32_t buttonMask;
-
-    struct STIOFixed pressure;
-    struct STIOFixed auxPressure;
-    struct STIOFixed twist;
-
-    enum STIOHIDDigitizerOrientationType orientationType : 32;
-};
-#if __has_feature(c_static_assert)
-_Static_assert(sizeof(struct STIOHIDDigitizerEventData) == 68, "");
-#endif
-
-struct __attribute__((packed)) STIOHIDDigitizerQualityOrientation {
-    struct STIOFixed quality;
-    struct STIOFixed density;
-    struct STIOFixed irregularity;
-    struct STIOFixed minorRadius;
-    struct STIOFixed majorRadius;
-};
-
-struct __attribute__((packed)) STIOHIDDigitizerQualityEventData {
-    struct STIOHIDDigitizerEventData base;
-    struct STIOHIDDigitizerQualityOrientation orientation;
-};
-#if __has_feature(c_static_assert)
-_Static_assert(sizeof(struct STIOHIDDigitizerQualityEventData) == 88, "");
-#endif
-
-struct __attribute__((packed)) STIOHIDSystemQueueEventData {
-    uint64_t timestamp;
-    uint64_t senderID;
-    uint32_t options;
-    uint32_t attributeLength;
-    uint32_t eventCount;
-};
-#if __has_feature(c_static_assert)
-_Static_assert(sizeof(struct STIOHIDSystemQueueEventData) == 28, "");
-#endif
 
 
 struct __attribute__((packed)) STIOHIDEventAttributeData {

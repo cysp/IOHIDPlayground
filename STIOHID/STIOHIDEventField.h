@@ -1,7 +1,7 @@
 //  Copyright (c) 2014 Scott Talbot. All rights reserved.
 
-#ifndef STIOHIDEVENTFIELD_H
-#define STIOHIDEVENTFIELD_H
+#ifndef STIOHID_STIOHIDEVENTFIELD_H
+#define STIOHID_STIOHIDEVENTFIELD_H
 
 #import "STIOHIDEventType.h"
 

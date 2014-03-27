@@ -2,13 +2,18 @@
 
 #import "STIOHIDAppDelegate.h"
 
-#import "STIOHIDEvent.h"
+#import <STIOHID/STIOHID.h>
+#import <STTouchDisplay/STTouchDisplay.h>
+
 #import "STUIEvent.h"
 
 #import <mach/mach_time.h>
 
 
-@implementation STIOHIDAppDelegate
+@implementation STIOHIDAppDelegate {
+@private
+    STTouchDisplayWindow *_touchDisplayWindow;
+}
 
 - (void)setWindow:(UIWindow *)window {
     _window = window;
@@ -25,10 +30,13 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIWindow * const window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    CGRect const screenBounds = [[UIScreen mainScreen] bounds];
+    UIWindow * const window = [[UIWindow alloc] initWithFrame:screenBounds];
     window.backgroundColor = [UIColor whiteColor];
 
     self.window = window;
+
+    _touchDisplayWindow = [[STTouchDisplayWindow alloc] initWithFrame:screenBounds];
 
     UITapGestureRecognizer *r = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
     [window addGestureRecognizer:r];
@@ -153,6 +161,15 @@
 - (void)application:(UIApplication *)application didReceiveEvent:(UIEvent *)event {
     NSLog(@"%@", event);
 
+    switch (event.type) {
+        case UIEventTypeTouches:
+            [_touchDisplayWindow updateWithTouches:event.allTouches];
+            break;
+        case UIEventTypeMotion:
+        case UIEventTypeRemoteControl:
+            break;
+    }
+
     if (![event respondsToSelector:@selector(_hidEvent)]) {
         return;
     }
@@ -182,14 +199,14 @@
 
     void const * const dataBytes = data.bytes;
     struct STIOHIDSystemQueueEventData const * const ed = (struct STIOHIDSystemQueueEventData const *)dataBytes;
-    struct STIOHIDDigitizerQualityEventData const * const e1dqed = (struct STIOHIDDigitizerQualityEventData const *)(dataBytes + sizeof(struct STIOHIDSystemQueueEventData) + ed->attributeLength);
-    struct STIOHIDDigitizerQualityEventData const * const e2dqed = (struct STIOHIDDigitizerQualityEventData const *)(dataBytes + sizeof(struct STIOHIDSystemQueueEventData) + ed->attributeLength + sizeof(struct STIOHIDDigitizerQualityEventData));
+    struct STIOHIDDigitizerQualityEventData const * const e1dqed = (struct STIOHIDDigitizerQualityEventData const *)(dataBytes + sizeof(struct STIOHIDSystemQueueEventData) + ed->attributeDataLength);
+    struct STIOHIDDigitizerQualityEventData const * const e2dqed = (struct STIOHIDDigitizerQualityEventData const *)(dataBytes + sizeof(struct STIOHIDSystemQueueEventData) + ed->attributeDataLength + sizeof(struct STIOHIDDigitizerQualityEventData));
     (void)e1dqed;
     (void)e2dqed;
 
     struct STIOHIDEventAttributeData const * const ead = (struct STIOHIDEventAttributeData const *)(dataBytes + sizeof(struct STIOHIDSystemQueueEventData));
     (void)ead;
-    NSData * const attributeData = [[NSData alloc] initWithBytesNoCopy:(void *)ead length:ed->attributeLength freeWhenDone:NO];
+    NSData * const attributeData = [[NSData alloc] initWithBytesNoCopy:(void *)ead length:ed->attributeDataLength freeWhenDone:NO];
     NSLog(@"attr: %@", attributeData);
 
     if (e->base.children && CFArrayGetCount(e->base.children) > 0) {

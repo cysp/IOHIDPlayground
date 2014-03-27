@@ -1,7 +1,7 @@
 //  Copyright (c) 2014 Scott Talbot. All rights reserved.
 
-#ifndef STIOHIDEVENTTYPE_H
-#define STIOHIDEVENTTYPE_H
+#ifndef STIOHID_STIOHIDEVENTTYPE_H
+#define STIOHID_STIOHIDEVENTTYPE_H
 
 enum STIOHIDEventType {
     STIOHIDEventTypeNULL,                    // 0
