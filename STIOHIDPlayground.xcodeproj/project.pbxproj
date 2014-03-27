@@ -14,7 +14,6 @@
 		2CEC9E8E18E17EDD00E7BE44 /* STIOHIDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9E8D18E17EDD00E7BE44 /* STIOHIDAppDelegate.m */; };
 		2CEC9E9018E17EDD00E7BE44 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CEC9E8F18E17EDD00E7BE44 /* Images.xcassets */; };
 		2CEC9EAE18E17F2300E7BE44 /* STIOHIDApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9EAD18E17F2300E7BE44 /* STIOHIDApp.m */; };
-		2CEC9EB118E1807500E7BE44 /* STIOHIDEventFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9EB018E1807500E7BE44 /* STIOHIDEventFunctions.m */; };
 		2CEC9EB418E181BE00E7BE44 /* STUIEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9EB318E181BE00E7BE44 /* STUIEvent.m */; };
 		2CEC9EBE18E41D9E00E7BE44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEC9E7D18E17EDD00E7BE44 /* Foundation.framework */; };
 		2CEC9ECB18E41D9E00E7BE44 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEC9E9618E17EDD00E7BE44 /* XCTest.framework */; };
@@ -23,6 +22,7 @@
 		2CEC9ED018E41D9E00E7BE44 /* libSTIOHID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEC9EBD18E41D9E00E7BE44 /* libSTIOHID.a */; };
 		2CEC9ED818E41D9E00E7BE44 /* STIOHIDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9ED718E41D9E00E7BE44 /* STIOHIDTests.m */; };
 		2CEC9EE118E41DF000E7BE44 /* libSTIOHID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEC9EBD18E41D9E00E7BE44 /* libSTIOHID.a */; };
+		2CEC9EE218E41E7400E7BE44 /* STIOHIDEventFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9EB018E1807500E7BE44 /* STIOHIDEventFunctions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,12 +158,6 @@
 				2CEC9E8D18E17EDD00E7BE44 /* STIOHIDAppDelegate.m */,
 				2CEC9EB218E181BE00E7BE44 /* STUIEvent.h */,
 				2CEC9EB318E181BE00E7BE44 /* STUIEvent.m */,
-				2CEC9EB518E19A9300E7BE44 /* STCFRuntime.h */,
-				2CEC9EAF18E1807500E7BE44 /* STIOHIDEvent.h */,
-				2CEC9EB718E19B3D00E7BE44 /* STIOHIDEventType.h */,
-				2CEC9EB618E19B2800E7BE44 /* STIOHIDEventField.h */,
-				2CEC9EB818E19DDB00E7BE44 /* STIOHIDEventFunctions.h */,
-				2CEC9EB018E1807500E7BE44 /* STIOHIDEventFunctions.m */,
 				2CEC9E8F18E17EDD00E7BE44 /* Images.xcassets */,
 			);
 			path = STIOHIDPlayground;
@@ -172,6 +166,12 @@
 		2CEC9EBF18E41D9E00E7BE44 /* STIOHID */ = {
 			isa = PBXGroup;
 			children = (
+				2CEC9EB518E19A9300E7BE44 /* STCFRuntime.h */,
+				2CEC9EAF18E1807500E7BE44 /* STIOHIDEvent.h */,
+				2CEC9EB718E19B3D00E7BE44 /* STIOHIDEventType.h */,
+				2CEC9EB618E19B2800E7BE44 /* STIOHIDEventField.h */,
+				2CEC9EB818E19DDB00E7BE44 /* STIOHIDEventFunctions.h */,
+				2CEC9EB018E1807500E7BE44 /* STIOHIDEventFunctions.m */,
 			);
 			path = STIOHID;
 			sourceTree = "<group>";
@@ -298,7 +298,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CEC9EB118E1807500E7BE44 /* STIOHIDEventFunctions.m in Sources */,
 				2CEC9E8A18E17EDD00E7BE44 /* main.m in Sources */,
 				2CEC9EB418E181BE00E7BE44 /* STUIEvent.m in Sources */,
 				2CEC9EAE18E17F2300E7BE44 /* STIOHIDApp.m in Sources */,
@@ -310,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CEC9EE218E41E7400E7BE44 /* STIOHIDEventFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
