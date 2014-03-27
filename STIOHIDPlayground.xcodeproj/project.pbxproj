@@ -16,7 +16,6 @@
 		2CEC9E9718E17EDD00E7BE44 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEC9E9618E17EDD00E7BE44 /* XCTest.framework */; };
 		2CEC9E9818E17EDD00E7BE44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEC9E7D18E17EDD00E7BE44 /* Foundation.framework */; };
 		2CEC9E9918E17EDD00E7BE44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEC9E8118E17EDD00E7BE44 /* UIKit.framework */; };
-		2CEC9EA318E17EDD00E7BE44 /* STIOHIDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9EA218E17EDD00E7BE44 /* STIOHIDTests.m */; };
 		2CEC9EAE18E17F2300E7BE44 /* STIOHIDApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9EAD18E17F2300E7BE44 /* STIOHIDApp.m */; };
 		2CEC9EB118E1807500E7BE44 /* STIOHIDEventFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9EB018E1807500E7BE44 /* STIOHIDEventFunctions.m */; };
 		2CEC9EB418E181BE00E7BE44 /* STUIEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9EB318E181BE00E7BE44 /* STUIEvent.m */; };
@@ -44,8 +43,6 @@
 		2CEC9E8F18E17EDD00E7BE44 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2CEC9E9518E17EDD00E7BE44 /* STIOHIDPlaygroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = STIOHIDPlaygroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CEC9E9618E17EDD00E7BE44 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		2CEC9E9E18E17EDD00E7BE44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2CEC9EA218E17EDD00E7BE44 /* STIOHIDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STIOHIDTests.m; sourceTree = "<group>"; };
 		2CEC9EAC18E17F2300E7BE44 /* STIOHIDApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STIOHIDApp.h; sourceTree = "<group>"; };
 		2CEC9EAD18E17F2300E7BE44 /* STIOHIDApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STIOHIDApp.m; sourceTree = "<group>"; };
 		2CEC9EAF18E1807500E7BE44 /* STIOHIDEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STIOHIDEvent.h; sourceTree = "<group>"; };
@@ -85,8 +82,7 @@
 		2CEC9E7118E17EDD00E7BE44 = {
 			isa = PBXGroup;
 			children = (
-				2CEC9E8318E17EDD00E7BE44 /* STIOHID */,
-				2CEC9E9C18E17EDD00E7BE44 /* STIOHIDTests */,
+				2CEC9E8318E17EDD00E7BE44 /* STIOHIDPlayground */,
 				2CEC9E7C18E17EDD00E7BE44 /* Frameworks */,
 				2CEC9E7B18E17EDD00E7BE44 /* Products */,
 			);
@@ -112,7 +108,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2CEC9E8318E17EDD00E7BE44 /* STIOHID */ = {
+		2CEC9E8318E17EDD00E7BE44 /* STIOHIDPlayground */ = {
 			isa = PBXGroup;
 			children = (
 				2CEC9E8518E17EDD00E7BE44 /* Info.plist */,
@@ -131,16 +127,7 @@
 				2CEC9EB018E1807500E7BE44 /* STIOHIDEventFunctions.m */,
 				2CEC9E8F18E17EDD00E7BE44 /* Images.xcassets */,
 			);
-			path = STIOHID;
-			sourceTree = "<group>";
-		};
-		2CEC9E9C18E17EDD00E7BE44 /* STIOHIDTests */ = {
-			isa = PBXGroup;
-			children = (
-				2CEC9E9E18E17EDD00E7BE44 /* Info.plist */,
-				2CEC9EA218E17EDD00E7BE44 /* STIOHIDTests.m */,
-			);
-			path = STIOHIDTests;
+			path = STIOHIDPlayground;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,7 +236,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CEC9EA318E17EDD00E7BE44 /* STIOHIDTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +327,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = "$(SRCROOT)/STIOHID/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/STIOHIDPlayground/Info.plist";
 				PRODUCT_NAME = STIOHIDPlayground;
 				WRAPPER_EXTENSION = app;
 			};
@@ -352,7 +338,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = "$(SRCROOT)/STIOHID/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/STIOHIDPlayground/Info.plist";
 				PRODUCT_NAME = STIOHIDPlayground;
 				WRAPPER_EXTENSION = app;
 			};
