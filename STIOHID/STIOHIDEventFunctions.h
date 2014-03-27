@@ -5,6 +5,7 @@
 
 #import <CoreFoundation/CoreFoundation.h>
 #import <STIOHID/STIOHID.h>
+#import <STIOHID/STIOHIDEvent.h>
 
 
 typedef CFTypeRef STIOHIDEventSystemClientRef;
