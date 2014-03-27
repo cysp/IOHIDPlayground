@@ -1,5 +1,8 @@
 //  Copyright (c) 2014 Scott Talbot. All rights reserved.
 
+#ifndef STIOHID_STIOHIDEVENT_H
+#define STIOHID_STIOHIDEVENT_H
+
 #import <Foundation/Foundation.h>
 
 #import <STIOHID/STCFRuntime.h>
@@ -152,4 +155,6 @@ _Static_assert(sizeof(struct STIOHIDEventAttributeData) == 28, "");
 
 typedef float STIOHIDFloat;
 
-#import "STIOHIDEventFunctions.h"
+//#import "STIOHIDEventFunctions.h"
+
+#endif

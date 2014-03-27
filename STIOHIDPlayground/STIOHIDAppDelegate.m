@@ -3,6 +3,7 @@
 #import "STIOHIDAppDelegate.h"
 
 #import <STIOHID/STIOHID.h>
+#import <STIOHID/STIOHIDEventFunctions.h>
 #import <STTouchDisplay/STTouchDisplay.h>
 
 #import "STUIEvent.h"

@@ -1,7 +1,7 @@
 //  Copyright (c) 2014 Scott Talbot. All rights reserved.
 
-#ifndef STCFRUNTIME_H
-#define STCFRUNTIME_H
+#ifndef STIOHID_STCFRUNTIME_H
+#define STIOHID_STCFRUNTIME_H
 
 #include <objc/objc.h>
 
