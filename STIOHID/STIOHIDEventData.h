@@ -1,7 +1,7 @@
 //  Copyright (c) 2014 Scott Talbot. All rights reserved.
 
-#ifndef STIOHIDPlayground_STIOHIDEventData_h
-#define STIOHIDPlayground_STIOHIDEventData_h
+#ifndef STIOHID_STIOHIDEVENTDATA_H
+#define STIOHID_STIOHIDEVENTDATA_H
 
 struct __attribute__((packed)) STIOHIDSystemQueueEventData {
     uint64_t timestamp;
@@ -24,7 +24,7 @@ struct __attribute__((packed)) STIOHIDEventData {
         };
         uint32_t options;
     } options;
-    uint32_t depth;//phase?
+    uint32_t depth;
 };
 #if __has_feature(c_static_assert)
 _Static_assert(sizeof(struct STIOHIDEventData) == 16, "");

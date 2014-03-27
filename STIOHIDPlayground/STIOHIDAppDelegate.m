@@ -63,7 +63,7 @@
                         .type = STIOHIDEventTypeDigitizer,
                         .options = {
                             .genericOptions = STIOHIDEventOptionIsAbsolute|STIOHIDEventOptionIsPixelUnits,
-                            .eventOptions = STIOHIDDigitizerEventTouch,
+                            .eventOptions = STIOHIDTransducerTouch,
                         },
                         .depth = 0,
                     },
@@ -84,7 +84,7 @@
                         .type = STIOHIDEventTypeDigitizer,
                         .options = {
                             .genericOptions = STIOHIDEventOptionIsAbsolute|STIOHIDEventOptionIsPixelUnits,
-                            .eventOptions = STIOHIDDigitizerEventRange|STIOHIDDigitizerEventTouch,
+                            .eventOptions = STIOHIDTransducerRange|STIOHIDTransducerTouch,
                         },
                         .depth = 1,
                     },

@@ -36,7 +36,6 @@ struct __attribute__((packed)) STIOHIDEventBase {
 
 struct __attribute__((packed)) STIOHIDEvent {
     struct STIOHIDEventBase base;
-    // STIOHIDEventData from here on
     uint32_t            size;
     STIOHIDEventType    type;
     uint32_t            recordOptions;
@@ -52,11 +51,11 @@ struct __attribute__((packed)) STIOHIDAxisEvent {
     } position;
 };
 
-enum STIOHIDDigitizerOptions {
-    STIOHIDTransducerRange               = 0x00010000,
-    STIOHIDTransducerTouch               = 0x00020000,
-    STIOHIDTransducerInvert              = 0x00040000,
-    STIOHIDTransducerDisplayIntegrated   = 0x00080000
+enum STIOHIDDigitizerEventOptions {
+    STIOHIDTransducerRange               = 0x0001,
+    STIOHIDTransducerTouch               = 0x0002,
+    STIOHIDTransducerInvert              = 0x0004,
+    STIOHIDTransducerDisplayIntegrated   = 0x0008
 };
 
 enum STIOHIDDigitizerTransducerType {
