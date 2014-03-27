@@ -24,6 +24,8 @@
 		2CEC9EE118E41DF000E7BE44 /* libSTIOHID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEC9EBD18E41D9E00E7BE44 /* libSTIOHID.a */; };
 		2CEC9EE218E41E7400E7BE44 /* STIOHIDEventFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9EB018E1807500E7BE44 /* STIOHIDEventFunctions.m */; };
 		2CEC9EF218E4222B00E7BE44 /* libSTTouchDisplay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEC9EED18E4220C00E7BE44 /* libSTTouchDisplay.a */; };
+		2CEC9EF518E426AC00E7BE44 /* STIOHIDDigitizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9EF418E426AC00E7BE44 /* STIOHIDDigitizer.m */; };
+		2CEC9EF818E426D300E7BE44 /* STIOHIDDigitizerTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC9EF718E426D300E7BE44 /* STIOHIDDigitizerTouch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,8 +89,6 @@
 		2CEC9EB218E181BE00E7BE44 /* STUIEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STUIEvent.h; sourceTree = "<group>"; };
 		2CEC9EB318E181BE00E7BE44 /* STUIEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STUIEvent.m; sourceTree = "<group>"; };
 		2CEC9EB518E19A9300E7BE44 /* STCFRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STCFRuntime.h; sourceTree = "<group>"; };
-		2CEC9EB618E19B2800E7BE44 /* STIOHIDEventField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STIOHIDEventField.h; sourceTree = "<group>"; };
-		2CEC9EB718E19B3D00E7BE44 /* STIOHIDEventType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STIOHIDEventType.h; sourceTree = "<group>"; };
 		2CEC9EB818E19DDB00E7BE44 /* STIOHIDEventFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STIOHIDEventFunctions.h; sourceTree = "<group>"; };
 		2CEC9EBD18E41D9E00E7BE44 /* libSTIOHID.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSTIOHID.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CEC9ECA18E41D9E00E7BE44 /* STIOHIDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = STIOHIDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,8 +96,14 @@
 		2CEC9ED718E41D9E00E7BE44 /* STIOHIDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STIOHIDTests.m; sourceTree = "<group>"; };
 		2CEC9EE318E41EC600E7BE44 /* STIOHID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STIOHID.h; sourceTree = "<group>"; };
 		2CEC9EE418E41F0A00E7BE44 /* STIOHIDEventData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STIOHIDEventData.h; sourceTree = "<group>"; };
-		2CEC9EE618E4208000E7BE44 /* STIOHIDTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STIOHIDTypes.h; sourceTree = "<group>"; };
 		2CEC9EE818E4220C00E7BE44 /* STTouchDisplay.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = STTouchDisplay.xcodeproj; path = ../../STTouchDisplay/STTouchDisplay.xcodeproj; sourceTree = "<group>"; };
+		2CEC9EF318E426AC00E7BE44 /* STIOHIDDigitizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STIOHIDDigitizer.h; sourceTree = "<group>"; };
+		2CEC9EF418E426AC00E7BE44 /* STIOHIDDigitizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STIOHIDDigitizer.m; sourceTree = "<group>"; };
+		2CEC9EF618E426D300E7BE44 /* STIOHIDDigitizerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STIOHIDDigitizerTouch.h; sourceTree = "<group>"; };
+		2CEC9EF718E426D300E7BE44 /* STIOHIDDigitizerTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STIOHIDDigitizerTouch.m; sourceTree = "<group>"; };
+		2CEC9EF918E426EE00E7BE44 /* STIOHIDDigitizerTouch+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "STIOHIDDigitizerTouch+Internal.h"; sourceTree = "<group>"; };
+		2CEC9EFE18E42C3E00E7BE44 /* STIOHIDDigitizer+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "STIOHIDDigitizer+Internal.h"; sourceTree = "<group>"; };
+		2CEC9EFF18E435DD00E7BE44 /* STIOHIDEventCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STIOHIDEventCommon.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,13 +195,17 @@
 			children = (
 				2CEC9EE318E41EC600E7BE44 /* STIOHID.h */,
 				2CEC9EB518E19A9300E7BE44 /* STCFRuntime.h */,
-				2CEC9EE618E4208000E7BE44 /* STIOHIDTypes.h */,
+				2CEC9EFF18E435DD00E7BE44 /* STIOHIDEventCommon.h */,
 				2CEC9EE418E41F0A00E7BE44 /* STIOHIDEventData.h */,
 				2CEC9EAF18E1807500E7BE44 /* STIOHIDEvent.h */,
-				2CEC9EB718E19B3D00E7BE44 /* STIOHIDEventType.h */,
-				2CEC9EB618E19B2800E7BE44 /* STIOHIDEventField.h */,
 				2CEC9EB818E19DDB00E7BE44 /* STIOHIDEventFunctions.h */,
 				2CEC9EB018E1807500E7BE44 /* STIOHIDEventFunctions.m */,
+				2CEC9EF318E426AC00E7BE44 /* STIOHIDDigitizer.h */,
+				2CEC9EFE18E42C3E00E7BE44 /* STIOHIDDigitizer+Internal.h */,
+				2CEC9EF418E426AC00E7BE44 /* STIOHIDDigitizer.m */,
+				2CEC9EF618E426D300E7BE44 /* STIOHIDDigitizerTouch.h */,
+				2CEC9EF918E426EE00E7BE44 /* STIOHIDDigitizerTouch+Internal.h */,
+				2CEC9EF718E426D300E7BE44 /* STIOHIDDigitizerTouch.m */,
 			);
 			path = STIOHID;
 			sourceTree = "<group>";
@@ -366,6 +376,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CEC9EF818E426D300E7BE44 /* STIOHIDDigitizerTouch.m in Sources */,
+				2CEC9EF518E426AC00E7BE44 /* STIOHIDDigitizer.m in Sources */,
 				2CEC9EE218E41E7400E7BE44 /* STIOHIDEventFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

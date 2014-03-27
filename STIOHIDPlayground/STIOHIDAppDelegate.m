@@ -42,115 +42,31 @@
     UITapGestureRecognizer *r = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
     [window addGestureRecognizer:r];
 
+    STIOHIDDigitizer * const digitizer = [[STIOHIDDigitizer alloc] init];
+
+    STIOHIDDigitizerTouch * __block touch1 = nil;
+    STIOHIDDigitizerTouch * __block touch2 = nil;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        touch1 = [digitizer touchAtPosition:(CGPoint){ 100, 100 }];
+        touch2 = [digitizer touchAtPosition:(CGPoint){ 150, 100 }];
+        [touch1 setPosition:(CGPoint){ 150, 200 } withDuration:.5];
+        [touch2 setPosition:(CGPoint){ 200, 200 } withDuration:.5];
+    });
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        union {
-            uint64_t uint64_t;
-            uint8_t uint8_t_8[8];
-        } senderId = {
-            .uint8_t_8 = "stiohid!",
-        };
-        struct STIOHIDSystemQueueEventData h = (struct STIOHIDSystemQueueEventData){
-            .timestamp = mach_absolute_time(),
-            .senderID = senderId.uint64_t,
-            .options = STIOHIDEventOptionIsAbsolute|STIOHIDEventOptionIsPixelUnits,
-            .eventCount = 2,
-        };
+        [touch2 setTouching:NO];
+        [touch1 setPosition:(CGPoint){ 20, 300 } withDuration:.25];
+    });
 
-        struct STIOHIDDigitizerQualityEventData hed = (struct STIOHIDDigitizerQualityEventData){
-            .base = {
-                .base = {
-                    .base = {
-                        .length = sizeof(struct STIOHIDDigitizerQualityEventData),
-                        .type = STIOHIDEventTypeDigitizer,
-                        .options = {
-                            .genericOptions = STIOHIDEventOptionIsAbsolute|STIOHIDEventOptionIsPixelUnits,
-                            .eventOptions = STIOHIDTransducerTouch,
-                        },
-                        .depth = 0,
-                    },
-                },
-                .transducerIndex = 1000,
-                .transducerType = STIOHIDDigitizerTransducerTypeHand,
-                .identity = 1000,
-                .eventMask = STIOHIDDigitizerEventTouch,
-                .childEventMask = STIOHIDDigitizerEventRange|STIOHIDDigitizerEventTouch,
-            },
-        };
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [touch2 setTouching:YES];
+        [touch1 setPosition:(CGPoint){ 100, 100 } withDuration:.5];
+        [touch2 setPosition:(CGPoint){ 150, 100 } withDuration:.5];
+    });
 
-        struct STIOHIDDigitizerQualityEventData fed = (struct STIOHIDDigitizerQualityEventData){
-            .base = {
-                .base = {
-                    .base = {
-                        .length = sizeof(struct STIOHIDDigitizerQualityEventData),
-                        .type = STIOHIDEventTypeDigitizer,
-                        .options = {
-                            .genericOptions = STIOHIDEventOptionIsAbsolute|STIOHIDEventOptionIsPixelUnits,
-                            .eventOptions = STIOHIDTransducerRange|STIOHIDTransducerTouch,
-                        },
-                        .depth = 1,
-                    },
-                    .position = {
-                        .x = { .hi = 200 },
-                        .y = { .hi = 160 },
-                    },
-                },
-                .transducerIndex = 1001,
-                .transducerType = STIOHIDDigitizerTransducerTypeFinger,
-                .identity = 1002,
-                .eventMask = STIOHIDDigitizerEventRange|STIOHIDDigitizerEventTouch,
-                .orientationType = STIOHIDDigitizerOrientationTypeQuality,
-            },
-            .orientation = {
-                .quality = { .hi = 1 },
-                .density = { .hi = 1 },
-                .irregularity = { .hi = 1 },
-                .majorRadius = { .hi = 5 },
-                .minorRadius = { .hi = 5 },
-            },
-        };
-
-
-        STIOHIDEventSystemClientRef const c = STIOHIDEventSystemClientCreate(NULL);
-
-        {
-            uint8_t d[sizeof(h) + sizeof(hed) + sizeof(fed)] = { 0 };
-
-            memcpy(&d[0], &h, sizeof(h));
-            memcpy(&d[sizeof(h)], &hed, sizeof(hed));
-            memcpy(&d[sizeof(h)+sizeof(hed)], &fed, sizeof(fed));
-
-            STIOHIDEventRef e = STIOHIDEventCreateWithBytes(NULL, d, sizeof(d));
-            if (e) {
-                if (c) {
-                    STIOHIDEventSystemClientDispatchEvent(c, e);
-                }
-                CFRelease(e);
-            }
-        }
-
-        h.timestamp += 10;
-        hed.base.base.base.options.eventOptions = 0;
-        fed.base.base.base.options.eventOptions = 0;
-
-        {
-            uint8_t d[sizeof(h) + sizeof(hed) + sizeof(fed)] = { 0 };
-
-            memcpy(&d[0], &h, sizeof(h));
-            memcpy(&d[sizeof(h)], &hed, sizeof(hed));
-            memcpy(&d[sizeof(h)+sizeof(hed)], &fed, sizeof(fed));
-
-            STIOHIDEventRef e = STIOHIDEventCreateWithBytes(NULL, d, sizeof(d));
-            if (e) {
-                if (c) {
-                    STIOHIDEventSystemClientDispatchEvent(c, e);
-                }
-                CFRelease(e);
-            }
-        }
-
-        if (c) {
-            CFRelease(c);
-        }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        STIOHIDDigitizerTouch * touch = [digitizer touchAtPosition:(CGPoint){ .x = 300, .y = 400 }];
+        (void)touch;
     });
 
     return YES;

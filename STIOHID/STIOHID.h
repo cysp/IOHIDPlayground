@@ -3,3 +3,6 @@
 
 #import <STIOHID/STIOHIDEvent.h>
 #import <STIOHID/STIOHIDEventData.h>
+
+#import <STIOHID/STIOHIDDigitizer.h>
+#import <STIOHID/STIOHIDDigitizerTouch.h>

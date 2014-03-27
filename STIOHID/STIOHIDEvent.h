@@ -5,19 +5,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import <STIOHID/STIOHID.h>
 #import <STIOHID/STCFRuntime.h>
-#import <STIOHID/STIOHIDTypes.h>
-#import <STIOHID/STIOHIDEventType.h>
-#import <STIOHID/STIOHIDEventField.h>
+#import <STIOHID/STIOHIDEventCommon.h>
+#import <STIOHID/STIOHIDEventData.h>
 
-
-enum STIOHIDEventOption {
-    STIOHIDEventOptionIsAbsolute     = 1 << 0,
-    STIOHIDEventOptionIsCollection   = 1 << 1,
-    STIOHIDEventOptionIsPixelUnits   = 1 << 2,
-    STIOHIDEventOptionIsCenterOrigin = 1 << 3,
-    STIOHIDEventOptionIsBuiltIn      = 1 << 4,
-};
 
 // 0x63 -> phase?
 
@@ -52,46 +44,6 @@ struct __attribute__((packed)) STIOHIDAxisEvent {
         struct STIOFixed y;
         struct STIOFixed z;
     } position;
-};
-
-enum STIOHIDDigitizerEventOptions {
-    STIOHIDTransducerRange               = 0x0001,
-    STIOHIDTransducerTouch               = 0x0002,
-    STIOHIDTransducerInvert              = 0x0004,
-    STIOHIDTransducerDisplayIntegrated   = 0x0008
-};
-
-enum STIOHIDDigitizerTransducerType {
-    STIOHIDDigitizerTransducerTypeStylus = 0,
-    STIOHIDDigitizerTransducerTypePuck = 1,
-    STIOHIDDigitizerTransducerTypeFinger = 2,
-    STIOHIDDigitizerTransducerTypeHand = 3,
-};
-
-enum STIOHIDDigitizerEventType {
-    STIOHIDDigitizerEventRange = 0x1,
-    STIOHIDDigitizerEventTouch = 0x2,
-    STIOHIDDigitizerEventPosition = 0x4,
-    STIOHIDDigitizerEventStop = 0x8,
-    STIOHIDDigitizerEventPeak = 0x10,
-    STIOHIDDigitizerEventIdentity = 0x20,
-    STIOHIDDigitizerEventAttribute = 0x40,
-    STIOHIDDigitizerEventCancel = 0x80,
-    STIOHIDDigitizerEventStart = 0x100,
-    STIOHIDDigitizerEventResting = 0x200,
-    STIOHIDDigitizerEventFromEdgeFlat = 0x400,
-    STIOHIDDigitizerEventFromEdgeTip = 0x800,
-    STIOHIDDigitizerEventFromCorner = 0x1000,
-    STIOHIDDigitizerEventSwipeUp    = 0x01000000,
-    STIOHIDDigitizerEventSwipeDown  = 0x02000000,
-    STIOHIDDigitizerEventSwipeLeft  = 0x04000000,
-    STIOHIDDigitizerEventSwipeRight = 0x08000000,
-};
-
-enum STIOHIDDigitizerOrientationType {
-    STIOHIDDigitizerOrientationTypeTilt = 0,
-    STIOHIDDigitizerOrientationTypePolar = 1,
-    STIOHIDDigitizerOrientationTypeQuality = 2,
 };
 
 struct __attribute__((packed)) STIOHIDDigitizerEvent {
