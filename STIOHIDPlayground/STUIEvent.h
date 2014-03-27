@@ -2,7 +2,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "STIOHIDEvent.h"
+#import <STIOHID/STIOHIDEvent.h>
 
 
 @protocol STUIEvent <NSObject>
