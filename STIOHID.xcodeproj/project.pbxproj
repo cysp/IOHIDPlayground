@@ -413,6 +413,7 @@
 				2CEC9EA818E17EDD00E7BE44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2CEC9EA918E17EDD00E7BE44 /* Build configuration list for PBXNativeTarget "STIOHIDTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +422,7 @@
 				2CEC9EAB18E17EDD00E7BE44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

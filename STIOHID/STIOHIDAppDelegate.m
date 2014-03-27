@@ -17,7 +17,8 @@
 
 
 - (void)tapRecognized:(UITapGestureRecognizer *)recognizer {
-    NSLog(@"%@", recognizer);
+    NSLog(@"tap recognized: %@", recognizer);
+    self.window.backgroundColor = [UIColor purpleColor];
 }
 
 
@@ -33,9 +34,15 @@
     [window addGestureRecognizer:r];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        union {
+            uint64_t uint64_t;
+            uint8_t uint8_t_8[8];
+        } senderId = {
+            .uint8_t_8 = "stiohid!",
+        };
         struct STIOHIDSystemQueueEventData h = (struct STIOHIDSystemQueueEventData){
             .timestamp = mach_absolute_time(),
-            .senderID = 0,
+            .senderID = senderId.uint64_t,
             .options = STIOHIDEventOptionIsAbsolute|STIOHIDEventOptionIsPixelUnits,
             .eventCount = 2,
         };
@@ -53,7 +60,7 @@
                         .depth = 0,
                     },
                 },
-                .transducerIndex = 2,
+                .transducerIndex = 1000,
                 .transducerType = STIOHIDDigitizerTransducerTypeHand,
                 .identity = 1000,
                 .eventMask = STIOHIDDigitizerEventTouch,
@@ -78,9 +85,9 @@
                         .y = { .hi = 160 },
                     },
                 },
-                .transducerIndex = 2,
+                .transducerIndex = 1001,
                 .transducerType = STIOHIDDigitizerTransducerTypeFinger,
-                .identity = 1001,
+                .identity = 1002,
                 .eventMask = STIOHIDDigitizerEventRange|STIOHIDDigitizerEventTouch,
                 .orientationType = STIOHIDDigitizerOrientationTypeQuality,
             },
@@ -144,6 +151,8 @@
 #pragma mark - STIOHIDApplicationDelegate
 
 - (void)application:(UIApplication *)application didReceiveEvent:(UIEvent *)event {
+    NSLog(@"%@", event);
+
     if (![event respondsToSelector:@selector(_hidEvent)]) {
         return;
     }
@@ -183,8 +192,8 @@
     NSData * const attributeData = [[NSData alloc] initWithBytesNoCopy:(void *)ead length:ed->attributeLength freeWhenDone:NO];
     NSLog(@"attr: %@", attributeData);
 
-    if (e->children && CFArrayGetCount(e->children) > 0) {
-        STIOHIDEventRef const child0 = CFArrayGetValueAtIndex(e->children, 0);
+    if (e->base.children && CFArrayGetCount(e->base.children) > 0) {
+        STIOHIDEventRef const child0 = CFArrayGetValueAtIndex(e->base.children, 0);
         struct STIOHIDDigitizerQualityEvent *dqe = (struct STIOHIDDigitizerQualityEvent *)child0;
         (void)dqe;
 
@@ -193,8 +202,8 @@
 //        NSLog(@"  c0: %@", data);
     }
 
-    if (e->children && CFArrayGetCount(e->children) > 1) {
-        STIOHIDEventRef const child1 = CFArrayGetValueAtIndex(e->children, 1);
+    if (e->base.children && CFArrayGetCount(e->base.children) > 1) {
+        STIOHIDEventRef const child1 = CFArrayGetValueAtIndex(e->base.children, 1);
         struct STIOHIDDigitizerQualityEvent *dqe = (struct STIOHIDDigitizerQualityEvent *)child1;
         (void)dqe;
 
@@ -202,8 +211,8 @@
 //        NSLog(@"  c1: %@", data);
     }
 
-    if (e->children && CFArrayGetCount(e->children) > 2) {
-        STIOHIDEventRef const child2 = CFArrayGetValueAtIndex(e->children, 2);
+    if (e->base.children && CFArrayGetCount(e->base.children) > 2) {
+        STIOHIDEventRef const child2 = CFArrayGetValueAtIndex(e->base.children, 2);
         struct STIOHIDDigitizerQualityEvent *dqe = (struct STIOHIDDigitizerQualityEvent *)child2;
         (void)dqe;
 

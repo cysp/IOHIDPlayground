@@ -25,7 +25,7 @@ struct __attribute__((packed)) STIOFixed {
 
 typedef CFTypeRef STIOHIDEventRef;
 typedef uint32_t STIOHIDEventType;
-struct __attribute__((packed)) STIOHIDEvent {
+struct __attribute__((packed)) STIOHIDEventBase {
     struct STCFRuntimeBase base;	// 0, 4
     uint64_t timeStamp;	// 8, c
     uint64_t senderId;
@@ -37,6 +37,10 @@ struct __attribute__((packed)) STIOHIDEvent {
     CFMutableArrayRef children;	// 20
     STIOHIDEventRef parent;	// 24
     uint32_t unknown;
+};
+
+struct __attribute__((packed)) STIOHIDEvent {
+    struct STIOHIDEventBase base;
     // STIOHIDEventData from here on
     uint32_t            size;
     STIOHIDEventType    type;
@@ -45,7 +49,7 @@ struct __attribute__((packed)) STIOHIDEvent {
 };
 
 struct __attribute__((packed)) STIOHIDAxisEvent {
-    struct STIOHIDEvent base;
+    struct STIOHIDEventBase base;
     struct {
         struct STIOFixed x;
         struct STIOFixed y;
