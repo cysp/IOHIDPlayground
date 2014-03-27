@@ -33,7 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2CEC9E7A18E17EDD00E7BE44 /* STIOHID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = STIOHID.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CEC9E7A18E17EDD00E7BE44 /* STIOHIDPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = STIOHIDPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CEC9E7D18E17EDD00E7BE44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2CEC9E7F18E17EDD00E7BE44 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2CEC9E8118E17EDD00E7BE44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -42,7 +42,7 @@
 		2CEC9E8C18E17EDD00E7BE44 /* STIOHIDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STIOHIDAppDelegate.h; sourceTree = "<group>"; };
 		2CEC9E8D18E17EDD00E7BE44 /* STIOHIDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STIOHIDAppDelegate.m; sourceTree = "<group>"; };
 		2CEC9E8F18E17EDD00E7BE44 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		2CEC9E9518E17EDD00E7BE44 /* STIOHIDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = STIOHIDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CEC9E9518E17EDD00E7BE44 /* STIOHIDPlaygroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = STIOHIDPlaygroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CEC9E9618E17EDD00E7BE44 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2CEC9E9E18E17EDD00E7BE44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CEC9EA218E17EDD00E7BE44 /* STIOHIDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STIOHIDTests.m; sourceTree = "<group>"; };
@@ -95,8 +95,8 @@
 		2CEC9E7B18E17EDD00E7BE44 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2CEC9E7A18E17EDD00E7BE44 /* STIOHID.app */,
-				2CEC9E9518E17EDD00E7BE44 /* STIOHIDTests.xctest */,
+				2CEC9E7A18E17EDD00E7BE44 /* STIOHIDPlayground.app */,
+				2CEC9E9518E17EDD00E7BE44 /* STIOHIDPlaygroundTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,9 +146,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2CEC9E7918E17EDD00E7BE44 /* STIOHID */ = {
+		2CEC9E7918E17EDD00E7BE44 /* STIOHIDPlayground */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2CEC9EA618E17EDD00E7BE44 /* Build configuration list for PBXNativeTarget "STIOHID" */;
+			buildConfigurationList = 2CEC9EA618E17EDD00E7BE44 /* Build configuration list for PBXNativeTarget "STIOHIDPlayground" */;
 			buildPhases = (
 				2CEC9E7618E17EDD00E7BE44 /* Sources */,
 				2CEC9E7718E17EDD00E7BE44 /* Frameworks */,
@@ -158,14 +158,14 @@
 			);
 			dependencies = (
 			);
-			name = STIOHID;
+			name = STIOHIDPlayground;
 			productName = STIOHID;
-			productReference = 2CEC9E7A18E17EDD00E7BE44 /* STIOHID.app */;
+			productReference = 2CEC9E7A18E17EDD00E7BE44 /* STIOHIDPlayground.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2CEC9E9418E17EDD00E7BE44 /* STIOHIDTests */ = {
+		2CEC9E9418E17EDD00E7BE44 /* STIOHIDPlaygroundTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2CEC9EA918E17EDD00E7BE44 /* Build configuration list for PBXNativeTarget "STIOHIDTests" */;
+			buildConfigurationList = 2CEC9EA918E17EDD00E7BE44 /* Build configuration list for PBXNativeTarget "STIOHIDPlaygroundTests" */;
 			buildPhases = (
 				2CEC9E9118E17EDD00E7BE44 /* Sources */,
 				2CEC9E9218E17EDD00E7BE44 /* Frameworks */,
@@ -176,9 +176,9 @@
 			dependencies = (
 				2CEC9E9B18E17EDD00E7BE44 /* PBXTargetDependency */,
 			);
-			name = STIOHIDTests;
+			name = STIOHIDPlaygroundTests;
 			productName = STIOHIDTests;
-			productReference = 2CEC9E9518E17EDD00E7BE44 /* STIOHIDTests.xctest */;
+			productReference = 2CEC9E9518E17EDD00E7BE44 /* STIOHIDPlaygroundTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -196,7 +196,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2CEC9E7518E17EDD00E7BE44 /* Build configuration list for PBXProject "STIOHID" */;
+			buildConfigurationList = 2CEC9E7518E17EDD00E7BE44 /* Build configuration list for PBXProject "STIOHIDPlayground" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -208,8 +208,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2CEC9E7918E17EDD00E7BE44 /* STIOHID */,
-				2CEC9E9418E17EDD00E7BE44 /* STIOHIDTests */,
+				2CEC9E7918E17EDD00E7BE44 /* STIOHIDPlayground */,
+				2CEC9E9418E17EDD00E7BE44 /* STIOHIDPlaygroundTests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,7 +258,7 @@
 /* Begin PBXTargetDependency section */
 		2CEC9E9B18E17EDD00E7BE44 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2CEC9E7918E17EDD00E7BE44 /* STIOHID */;
+			target = 2CEC9E7918E17EDD00E7BE44 /* STIOHIDPlayground */;
 			targetProxy = 2CEC9E9A18E17EDD00E7BE44 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -342,7 +342,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/STIOHID/Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = STIOHIDPlayground;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -353,7 +353,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/STIOHID/Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = STIOHIDPlayground;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -372,7 +372,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = STIOHIDTests/Info.plist;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = STIOHIDPlaygroundTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -388,7 +388,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				INFOPLIST_FILE = STIOHIDTests/Info.plist;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = STIOHIDPlaygroundTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -397,7 +397,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2CEC9E7518E17EDD00E7BE44 /* Build configuration list for PBXProject "STIOHID" */ = {
+		2CEC9E7518E17EDD00E7BE44 /* Build configuration list for PBXProject "STIOHIDPlayground" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CEC9EA418E17EDD00E7BE44 /* Debug */,
@@ -406,7 +406,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2CEC9EA618E17EDD00E7BE44 /* Build configuration list for PBXNativeTarget "STIOHID" */ = {
+		2CEC9EA618E17EDD00E7BE44 /* Build configuration list for PBXNativeTarget "STIOHIDPlayground" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CEC9EA718E17EDD00E7BE44 /* Debug */,
@@ -415,7 +415,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2CEC9EA918E17EDD00E7BE44 /* Build configuration list for PBXNativeTarget "STIOHIDTests" */ = {
+		2CEC9EA918E17EDD00E7BE44 /* Build configuration list for PBXNativeTarget "STIOHIDPlaygroundTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CEC9EAA18E17EDD00E7BE44 /* Debug */,
