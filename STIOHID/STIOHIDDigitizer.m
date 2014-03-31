@@ -105,60 +105,65 @@ static STIOHIDEventRef STIOHIDDigitizerTouchEventCreate(uint32_t identity, NSMut
 
 
 @interface STIOHIDDigitizerTouchAnimationState : NSObject
-@property (nonatomic,assign,readonly) CGPoint position;
 @property (nonatomic,assign,readonly) CGPoint targetPosition;
-@property (nonatomic,assign,readonly) NSTimeInterval remainingDuration;
 - (void)setTargetPosition:(CGPoint)position duration:(NSTimeInterval)duration;
 - (CGPoint)positionByRemovingDuration:(NSTimeInterval)duration;
 @property (nonatomic,assign,getter=isFinished,readonly) BOOL finished;
 @end
 @implementation STIOHIDDigitizerTouchAnimationState {
 @private
-    CGVector _remainingDelta;
+    CGPoint _startingPosition;
+    CGPoint _currentPosition;
     NSTimeInterval _totalDuration;
+    NSTimeInterval _remainingDuration;
 }
 - (id)init {
     return [self initWithPosition:CGPointZero targetPosition:CGPointZero duration:0];
 }
 - (id)initWithPosition:(CGPoint)position targetPosition:(CGPoint)targetPosition duration:(NSTimeInterval)duration {
     if ((self = [super init])) {
-        _position = position;
+        _startingPosition = _currentPosition = position;
         _targetPosition = targetPosition;
-        _remainingDelta = (CGVector){
-            .dx = _targetPosition.x - _position.x,
-            .dy = _targetPosition.y - _position.y,
-        };
         _remainingDuration = _totalDuration = duration;
     }
     return self;
 }
 - (void)setTargetPosition:(CGPoint)position duration:(NSTimeInterval)duration {
+    _startingPosition = _currentPosition;
     _targetPosition = position;
-    _remainingDelta = (CGVector){
-        .dx = _targetPosition.x - _position.x,
-        .dy = _targetPosition.y - _position.y,
-    };
-    _remainingDuration = duration;
+    _remainingDuration = _totalDuration = duration;
 }
 - (CGPoint)positionByRemovingDuration:(NSTimeInterval)duration {
-    CGPoint const currentPosition = _position;
+    CGPoint const startingPosition = _startingPosition;
     CGPoint const targetPosition = _targetPosition;
-    NSTimeInterval const remainingDuration = MAX(0, _remainingDuration);
-    duration = MIN(duration, remainingDuration);
+    NSTimeInterval totalDuration = _totalDuration;
+    duration = MIN(duration, MAX(0, _remainingDuration));
     if ((_remainingDuration -= duration) == 0) {
         return targetPosition;
     }
 
-    double const deltaPortion = duration / remainingDuration;
-    CGVector const remainingDelta = (CGVector){
-        .dx = targetPosition.x - currentPosition.x,
-        .dy = targetPosition.y - currentPosition.y,
+    NSTimeInterval const remainingDuration = _remainingDuration;
+
+    double const t = (totalDuration - remainingDuration) / totalDuration;
+
+    double deltaPortion;
+    if (t == .5) {
+        deltaPortion = .5;
+    } else if (t < .5) {
+        deltaPortion = 2 * t * t;
+    } else if (t > .5) {
+        deltaPortion = 1 - (2 * (t - 1) * (t - 1));
+    }
+
+    CGVector const delta = (CGVector){
+        .dx = targetPosition.x - startingPosition.x,
+        .dy = targetPosition.y - startingPosition.y,
     };
     CGPoint const position = (CGPoint){
-        .x = currentPosition.x + remainingDelta.dx * deltaPortion,
-        .y = currentPosition.y + remainingDelta.dy * deltaPortion,
+        .x = startingPosition.x + delta.dx * deltaPortion,
+        .y = startingPosition.y + delta.dy * deltaPortion,
     };
-    _position = position;
+    _currentPosition = position;
     return position;
 }
 - (BOOL)isFinished {

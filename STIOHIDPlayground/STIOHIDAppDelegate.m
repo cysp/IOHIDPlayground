@@ -49,19 +49,19 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         touch1 = [digitizer touchAtPosition:(CGPoint){ 100, 100 }];
         touch2 = [digitizer touchAtPosition:(CGPoint){ 150, 100 }];
-        [touch1 setPosition:(CGPoint){ 150, 200 } withDuration:.5];
-        [touch2 setPosition:(CGPoint){ 200, 200 } withDuration:.5];
+        [touch1 setPosition:(CGPoint){ 150, 200 } withDuration:1];
+        [touch2 setPosition:(CGPoint){ 200, 200 } withDuration:1];
     });
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [touch2 setTouching:NO];
-        [touch1 setPosition:(CGPoint){ 20, 300 } withDuration:.25];
+        [touch1 setPosition:(CGPoint){ 20, 300 } withDuration:.5];
     });
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [touch2 setTouching:YES];
-        [touch1 setPosition:(CGPoint){ 100, 100 } withDuration:.5];
-        [touch2 setPosition:(CGPoint){ 150, 100 } withDuration:.5];
+        [touch1 setPosition:(CGPoint){ 100, 100 } withDuration:1];
+        [touch2 setPosition:(CGPoint){ 150, 100 } withDuration:1];
     });
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -76,8 +76,6 @@
 #pragma mark - STIOHIDApplicationDelegate
 
 - (void)application:(UIApplication *)application didReceiveEvent:(UIEvent *)event {
-    NSLog(@"%@", event);
-
     switch (event.type) {
         case UIEventTypeTouches:
             [_touchDisplayWindow updateWithTouches:event.allTouches];

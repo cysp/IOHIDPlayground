@@ -28,7 +28,7 @@
 }
 - (void)setPosition:(CGPoint)position withDuration:(NSTimeInterval)duration {
     CGPoint const originalPosition = _position;
-    if (!CGPointEqualToPoint(_position, position)) {
+    if (!CGPointEqualToPoint(_position, position) || duration) {
         _position = position;
         [self.digitizer touch:self animateFromPosition:originalPosition toPosition:_position withDuration:duration];
     }
