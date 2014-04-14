@@ -97,7 +97,7 @@
 - (void)application:(UIApplication *)application didReceiveEvent:(UIEvent *)event {
     switch (event.type) {
         case UIEventTypeTouches:
-            [_touchDisplayWindow updateWithTouches:event.allTouches];
+            [_touchDisplayWindow updateWithEvent:event];
             break;
         case UIEventTypeMotion:
         case UIEventTypeRemoteControl:
