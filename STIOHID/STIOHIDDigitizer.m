@@ -193,6 +193,7 @@ static STIOHIDEventRef STIOHIDDigitizerTouchEventCreate(uint32_t identity, NSMut
 - (id)init {
     if ((self = [super init])) {
         _eventSystemClient = STIOHIDEventSystemClientCreate(NULL);
+        STIOHIDEventSystemClientScheduleWithRunLoop(_eventSystemClient, CFRunLoopGetMain(), kCFRunLoopCommonModes);
 
         _touchContexts = [[NSMutableSet alloc] initWithCapacity:STIOHIDDigitizerExpectedNumberOfTouches];
         _touchesByTouchContext = [[NSMapTable alloc] initWithKeyOptions:NSPointerFunctionsObjectPersonality|NSPointerFunctionsStrongMemory valueOptions:NSPointerFunctionsObjectPersonality|NSPointerFunctionsWeakMemory capacity:STIOHIDDigitizerExpectedNumberOfTouches];

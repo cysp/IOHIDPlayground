@@ -11,9 +11,13 @@
 #import <mach/mach_time.h>
 
 
+@interface STIOHIDAppDelegate () <UIScrollViewDelegate>
+@end
+
 @implementation STIOHIDAppDelegate {
 @private
     STTouchDisplayWindow *_touchDisplayWindow;
+    UIView *_zoomView;
 }
 
 - (void)setWindow:(UIWindow *)window {
@@ -35,12 +39,27 @@
     UIWindow * const window = [[UIWindow alloc] initWithFrame:screenBounds];
     window.backgroundColor = [UIColor whiteColor];
 
+    UIScrollView * const scrollView = [[UIScrollView alloc] initWithFrame:screenBounds];
+    scrollView.contentSize = screenBounds.size;
+    scrollView.delegate = self;
+    scrollView.minimumZoomScale = .1;
+    scrollView.maximumZoomScale = 2;
+    scrollView.bounces = YES;
+    scrollView.bouncesZoom = YES;
+    scrollView.alwaysBounceHorizontal = YES;
+    scrollView.alwaysBounceVertical = YES;
+    [window addSubview:scrollView];
+
+    UIView * const zoomView = _zoomView = [[UIView alloc] initWithFrame:scrollView.bounds];
+    zoomView.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:.2f];
+    [scrollView addSubview:zoomView];
+
     self.window = window;
 
     _touchDisplayWindow = [[STTouchDisplayWindow alloc] initWithFrame:screenBounds];
 
     UITapGestureRecognizer *r = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
-    [window addGestureRecognizer:r];
+    [zoomView addGestureRecognizer:r];
 
     STIOHIDDigitizer * const digitizer = [[STIOHIDDigitizer alloc] init];
 
@@ -119,10 +138,14 @@
     (void)e1dqed;
     (void)e2dqed;
 
+    NSLog(@"p: %g,%g", STIOFixedToDouble(e2dqed->base.pressure), STIOFixedToDouble(e2dqed->base.auxPressure));
+    NSLog(@"t: %g", STIOFixedToDouble(e2dqed->base.twist));
+    NSLog(@"r: %g,%g", STIOFixedToDouble(e2dqed->orientation.majorRadius), STIOFixedToDouble(e2dqed->orientation.minorRadius));
+
     struct STIOHIDEventAttributeData const * const ead = (struct STIOHIDEventAttributeData const *)(dataBytes + sizeof(struct STIOHIDSystemQueueEventData));
     (void)ead;
     NSData * const attributeData = [[NSData alloc] initWithBytesNoCopy:(void *)ead length:ed->attributeDataLength freeWhenDone:NO];
-    NSLog(@"attr: %@", attributeData);
+//    NSLog(@"attr: %@", attributeData);
 
     if (e->base.children && CFArrayGetCount(e->base.children) > 0) {
         STIOHIDEventRef const child0 = CFArrayGetValueAtIndex(e->base.children, 0);
@@ -151,6 +174,11 @@
 //        NSData * const data = (__bridge_transfer NSData *)STIOHIDEventCreateData(NULL, child2);
 //        NSLog(@"  c2: %@", data);
     }
+}
+
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return _zoomView;
 }
 
 @end

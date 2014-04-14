@@ -95,7 +95,7 @@ struct __attribute__((packed)) STIOHIDEventAttributeData {
     uint32_t unknown1; // dunno, always 0x02?
     uint32_t unknown2; // dunno, always 0x0c?
     uint32_t contextId;
-    uint32_t unknown4; // isFirstEvent?
+    uint32_t unknown4; // systemGesturePossible
     uint32_t unknown5; // dunno, always 0?
     uint32_t unknown6; // dunno, always 0?
     uint32_t unknown7; // dunno, always 0?

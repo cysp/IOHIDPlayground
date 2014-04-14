@@ -12,6 +12,9 @@ typedef CFTypeRef STIOHIDEventSystemClientRef;
 typedef STIOHIDEventSystemClientRef (*STIOHIDEventSystemClientCreate_t)(CFAllocatorRef allocator);
 extern STIOHIDEventSystemClientCreate_t STIOHIDEventSystemClientCreate;
 
+typedef void (*STIOHIDEventSystemClientScheduleWithRunLoop_t)(STIOHIDEventSystemClientRef client, CFRunLoopRef runLoop, CFStringRef mode);
+extern STIOHIDEventSystemClientScheduleWithRunLoop_t STIOHIDEventSystemClientScheduleWithRunLoop;
+
 typedef void (*STIOHIDEventSystemClientDispatchEvent_t)(STIOHIDEventSystemClientRef client, STIOHIDEventRef event);
 extern STIOHIDEventSystemClientDispatchEvent_t STIOHIDEventSystemClientDispatchEvent;
 

@@ -14,6 +14,11 @@ struct __attribute__((packed)) STIOFixed {
     uint32_t hi : 16;
 };
 
+static inline double STIOFixedToDouble(struct STIOFixed a) {
+    return a.hi + ((double)a.lo / (1 << 16));
+};
+
+
 enum STIOHIDEventType {
     STIOHIDEventTypeNULL,                    // 0
     STIOHIDEventTypeVendorDefined,

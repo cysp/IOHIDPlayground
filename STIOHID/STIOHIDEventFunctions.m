@@ -9,6 +9,7 @@ STIOHIDEventCreateData_t STIOHIDEventCreateData = NULL;
 STIOHIDEventCreateWithBytes_t STIOHIDEventCreateWithBytes = NULL;
 
 STIOHIDEventSystemClientCreate_t STIOHIDEventSystemClientCreate = NULL;
+STIOHIDEventSystemClientScheduleWithRunLoop_t STIOHIDEventSystemClientScheduleWithRunLoop = NULL;
 STIOHIDEventSystemClientDispatchEvent_t STIOHIDEventSystemClientDispatchEvent = NULL;
 
 STIOHIDEventGetAttributeData_t STIOHIDEventGetAttributeData = NULL;
@@ -20,6 +21,7 @@ STIOHIDEventSetFloatValue_t STIOHIDEventSetFloatValue = NULL;
 __attribute__((constructor))
 void STIOHIDEventInit(void) {
     STIOHIDEventSystemClientCreate = dlsym(RTLD_DEFAULT, "IOHIDEventSystemClientCreate");
+    STIOHIDEventSystemClientScheduleWithRunLoop = dlsym(RTLD_DEFAULT, "IOHIDEventSystemClientScheduleWithRunLoop");
     STIOHIDEventSystemClientDispatchEvent = dlsym(RTLD_DEFAULT, "IOHIDEventSystemClientDispatchEvent");
 
     STIOHIDEventCreateWithBytes = dlsym(RTLD_DEFAULT, "IOHIDEventCreateWithBytes");
