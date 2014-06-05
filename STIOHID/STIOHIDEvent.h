@@ -21,12 +21,15 @@ struct __attribute__((packed)) STIOHIDEventBase {
     uint64_t senderId;
     enum STIOHIDEventOption options : 32;	// 18
     uint32_t typeMask;	// 1c
-    uint32_t attributeDataLength;
+    uintptr_t attributeDataLength;
     uintptr_t attributeDataBytes;
     uint64_t context;
+#if __LP64__
+    uintptr_t x;
+#endif
     CFMutableArrayRef children;	// 20
     STIOHIDEventRef parent;	// 24
-    uint32_t unknown;
+    uintptr_t unknown;
 };
 
 struct __attribute__((packed)) STIOHIDEvent {
@@ -38,7 +41,7 @@ struct __attribute__((packed)) STIOHIDEvent {
 };
 
 struct __attribute__((packed)) STIOHIDAxisEvent {
-    struct STIOHIDEventBase base;
+    struct STIOHIDEvent base;
     struct {
         struct STIOFixed x;
         struct STIOFixed y;
